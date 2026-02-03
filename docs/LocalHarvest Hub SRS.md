@@ -36,12 +36,9 @@
 - Route optimization and live delivery tracking. 
 - Multi‑language UI beyond English. 
 
-> This document is **requirements‑level** and solution‑neutral; design decisions (UI layouts, API endpoints, schemas) are documented separately.
-
 ---
 
 ## 2. Functional Requirements (User Stories)
-Write each story as: **As a `<role>`, I want `<capability>`, so that `<benefit>`.** Each story includes at least one **Given/When/Then** scenario.
 
 ### 2.1 Customer Stories
 - **US‑CUST‑001 — Register & manage profile**  
@@ -240,7 +237,7 @@ Write each story as: **As a `<role>`, I want `<capability>`, so that `<benefit>`
 
 ---
 
-## 3. Non‑Functional Requirements (measurable)
+## 3. Non‑Functional Requirements
 - **Performance:** 95% of discovery responses ≤ **1.5s**; 99% of box detail pages ≤ **1.0s** under typical load. 
 - **Availability/Reliability:** ≥ **99.5%** monthly uptime (maintenance excluded); basic retries for transient failures. 
 - **Security/Privacy:** Hashed & salted passwords; role‑based access checks.
