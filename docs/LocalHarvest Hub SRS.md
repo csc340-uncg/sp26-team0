@@ -2,7 +2,7 @@
 # Requirements – LocalHarvest Hub
 
 **Project Name:** LocalHarvest Hub\
-**Team:** Alice Beback; Bob McBobbyface\
+**Team:** Alice Beback - Provider; Bob McBobbyface - Customer\
 **Course:** CSC 340\
 **Version:** 1.0\
 **Date:** 2026-01-30\
