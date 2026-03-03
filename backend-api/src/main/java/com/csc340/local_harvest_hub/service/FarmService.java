@@ -26,9 +26,6 @@ public class FarmService {
         return farmRepository.findAll();
     }
 
-    public List<Farm> getFarmsByFarmerId(Long farmerId) {
-        return farmRepository.findByFarmerId(farmerId);
-    }
 
     public Farm updateFarm(Long id, Farm farmDetails) {
         return farmRepository.findById(id).map(farm -> {

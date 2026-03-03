@@ -4,10 +4,13 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+
+
 
 @Entity
 @Table(name = "subscriptions")
@@ -22,10 +25,12 @@ public class Subscription {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
+    @JsonIgnoreProperties({"subscriptions"})
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "box_id", nullable = false)
+    @JsonIgnoreProperties({"subscriptions"})
     private ProduceBox produceBox;
 
     @Column(nullable = false)
@@ -38,7 +43,8 @@ public class Subscription {
     private LocalDate endDate;
 
     @Column(nullable = false)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private SubscriptionStatus status;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -47,7 +53,7 @@ public class Subscription {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "subscription", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
+    @JsonIgnoreProperties("subscription")
     private List<Review> reviews;
 
     @PrePersist
@@ -60,4 +66,11 @@ public class Subscription {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+}
+
+enum SubscriptionStatus {
+    ACTIVE,
+    PAUSED,
+    CANCELLED,
+    COMPLETED
 }

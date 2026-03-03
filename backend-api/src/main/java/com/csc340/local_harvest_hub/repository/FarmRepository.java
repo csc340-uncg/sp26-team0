@@ -5,10 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface FarmRepository extends JpaRepository<Farm, Long> {
   @Query(value = "SELECT f FROM Farm f WHERE f.farmer_id = :farmerId", nativeQuery = true)
-  List<Farm> findByFarmerId(Long farmerId);
+  Optional<Farm> findByFarmerId(Long farmerId);
 }

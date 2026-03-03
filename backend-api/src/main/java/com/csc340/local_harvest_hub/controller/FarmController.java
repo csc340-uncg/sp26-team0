@@ -36,11 +36,6 @@ public class FarmController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/farmer/{farmerId}")
-    public ResponseEntity<List<Farm>> getFarmsByFarmerId(@PathVariable Long farmerId) {
-        List<Farm> farms = farmService.getFarmsByFarmerId(farmerId);
-        return new ResponseEntity<>(farms, HttpStatus.OK);
-    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Farm> updateFarm(@PathVariable Long id, @RequestBody Farm farmDetails) {

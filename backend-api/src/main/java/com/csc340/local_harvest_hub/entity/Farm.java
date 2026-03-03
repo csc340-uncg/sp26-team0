@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,8 +20,9 @@ public class Farm {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long farmId;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "farmer_id", nullable = false)
+    @JsonIgnoreProperties("farm")
     private Farmer farmer;
 
     @Column(nullable = false)
@@ -39,7 +41,7 @@ public class Farm {
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
+    @JsonIgnoreProperties("farm")
     private List<ProduceBox> produceBoxes;
 
     @PrePersist

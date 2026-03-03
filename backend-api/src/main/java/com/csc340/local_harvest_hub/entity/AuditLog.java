@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "audit_logs")
 @Data
@@ -13,31 +15,40 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class AuditLog {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long logId;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long logId;
 
-    @ManyToOne
-    @JoinColumn(name = "admin_id", nullable = false)
-    private SysAdmin admin;
+  @ManyToOne
+  @JoinColumn(name = "admin_id", nullable = false)
+  @JsonIgnoreProperties("auditLogs")
+  private SysAdmin admin;
 
-    @Column(nullable = false)
-    private String action;
+  @Column(nullable = false)
+  private String action;
 
-    @Column(nullable = false)
-    private String entityType;
+  @Column(nullable = false)
+  @Enumerated(EnumType.STRING)
+  private EntityType entityType;
 
-    @Column(nullable = false)
-    private Long entityId;
+  @Column(nullable = false)
+  private Long entityId;
 
-    @Column(columnDefinition = "JSONB")
-    private String details;
+  @Column(columnDefinition = "JSONB")
+  private String details;
 
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+  @Column(nullable = false, updatable = false)
+  private LocalDateTime createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-    }
+  @PrePersist
+  protected void onCreate() {
+    createdAt = LocalDateTime.now();
+  }
+}
+
+enum EntityType {
+  USER,
+  BOX,
+  REVIEW,
+  OTHER
 }

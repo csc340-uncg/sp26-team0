@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "reviews")
@@ -21,6 +21,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "subscription_id", nullable = false)
+     @JsonIgnoreProperties("reviews")
     private Subscription subscription;
 
     @Column(nullable = false)
@@ -43,10 +44,6 @@ public class Review {
 
     @Column(nullable = false)
     private LocalDateTime updatedAt;
-
-    @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private List<ReviewModeration> moderations;
 
     @PrePersist
     protected void onCreate() {
