@@ -40,6 +40,7 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 ---
 
 ## 3. Use Case Model
+![Use Case Model](https://github.com/csc340-uncg/sp26-team0/blob/main/docs/use-case.jpg)
 
 ## 4. Use Case Descriptions
 
@@ -296,3 +297,4 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 ---
 
 ## 5 UML Class Model
+![UML Class Model](https://github.com/csc340-uncg/sp26-team0/blob/main/docs/class.png)
