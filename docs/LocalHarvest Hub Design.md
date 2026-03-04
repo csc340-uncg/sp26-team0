@@ -13,10 +13,10 @@ Table of Contents
 * 2 [Actors](#2-actors)
 * 3 [Use Case Model](#3-use-case-model)
 * 4 [Use Case Descriptions](#4-use-case-descriptions)
-  * 4.1 [Actor: Farmer](#41-actor-farmer)
-  * 4.2 [Actor: Customer](#42-actor-customer)
-  * 4.3 [Actor: System Admin](#43-actor-system-admin)
-* 5 [UML Class Diagram](#5-uml-class-diagram)
+  * 4.1 [Customer Use Cases](#41-customer-use-cases)
+  * 4.2 [Farmer Use Cases](#42-farmer-use-cases)
+  * 4.3 [System Admin Use Cases](#43-system-admin-use-cases)
+* 5 [UML Class Model](#5-uml-class-model)
 
 ## Revision History
 | Name | Date    | Reason For Changes  | Version   |
@@ -152,7 +152,7 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 
 ---
 
-### 4.2 Provider (Farmer) Use Cases
+### 4.2 Farmer Use Cases
 
 #### UC‑PROV‑001 — Register & Manage Provider Profile
 **Primary Actor:** Provider (Farmer)  
@@ -229,7 +229,7 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 
 ---
 
-### 4.3 System Administrator Use Cases
+### 4.3 System Admin Use Cases
 
 #### UC‑ADMIN‑001 — Manage User Access (Warnings/Bans)
 **Primary Actor:** System Administrator  
