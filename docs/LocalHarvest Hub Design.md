@@ -10,18 +10,18 @@ Table of Contents
 =================
 * [Revision History](#revision-history)
 * 1 [Product Overview](#1-product-overview)
-* 2 [Actors](#actors)
-* 3 [Use Case Model](#use-case-model)
-* 4 [Use Case Descriptions](#2-use-case-descriptions)
+* 2 [Actors](#2-actors)
+* 3 [Use Case Model](#3-use-case-model)
+* 4 [Use Case Descriptions](#4-use-case-descriptions)
   * 4.1 [Actor: Farmer](#41-actor-farmer)
   * 4.2 [Actor: Customer](#42-actor-customer)
-  * 4.3 [Actor: System Admin](#43-actor-customer) 
+  * 4.3 [Actor: System Admin](#43-actor-system-admin)
 * 5 [UML Class Diagram](#5-uml-class-diagram)
 
 ## Revision History
 | Name | Date    | Reason For Changes  | Version   |
 | ---- | ------- | ------------------- | --------- |
-|  Al  |10/8     | Initial Design      |    1      |
+|  Al  |3/1      | Initial Design      |    1      |
 |      |         |                     |           |
 |      |         |                     |           |
 
@@ -51,8 +51,11 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 **Stakeholders & Interests:**  
 - *Customer:* quick, secure signup; control over personal data.  
 - *System:* valid accounts; basic profile completeness for discovery.
+
 **Preconditions:** Customer is not authenticated.
+
 **Trigger:** Selects **Sign up** / **Create account**.
+
 **Main Success Scenario:**
 1. System displays registration form.  
 2. Customer enters required details (e.g., name, contact, password).  
@@ -60,9 +63,11 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 4. System prompts for optional profile fields (location, preferences).  
 5. Customer updates and saves profile.  
 6. System confirms and authenticates the user.  
+
 **Extensions:**  
 - 2a. Weak/invalid password → System explains rule; customer retries.  
 - 3a. Email already registered → System suggests sign‑in or reset.  
+
 **Postconditions (Success):** Account and profile exist; user is signed in.  
 **Minimal Guarantees:** No partial or invalid data persisted on failure.  
 **Special Requirements:** Usable, accessible form; password policy; (optional) email verification per SRS.  
@@ -79,9 +84,12 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 2. Customer opens a farm profile.  
 3. System shows farm details (description, coverage, available boxes).  
 4. Customer navigates to other profiles or back to the list.  
+
 **Extensions:**   
 - 1a. No farms available → System shows an empty state with guidance.  
-**Postconditions:** None (view‑only).  
+
+**Postconditions:** None (view‑only).
+
 **Special Requirements:** Mobile‑friendly cards; fast loading.  
 
 ---
@@ -97,8 +105,10 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 3. System updates the list accordingly.  
 4. Customer opens a box detail page.  
 5. System shows contents, price, schedule/cadence, and farm.  
+
 **Extensions:**   
 - 2a. No results → System suggests clearing/adjusting filters.  
+
 **Postconditions:** None (until a subscription is started).  
 **Special Requirements:** Responsive filtering; resilient to empty results.  
 
@@ -114,8 +124,10 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 2. Customer selects options and confirms.  
 3. System validates availability and terms.  
 4. System creates the subscription and confirms next delivery.  
+
 **Extensions:**   
 - 3a. Selected cadence unavailable → System suggests alternatives/dates.  
+
 **Postconditions:** Active subscription linked to the customer and box.  
 **Special Requirements:** Transparent pricing/renewal terms and cancellation policy.  
 
@@ -131,14 +143,16 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 2. Customer submits review.  
 3. System validates (length, profanity, eligibility).  
 4. System posts the review to the box/farm profile.  
+
 **Extensions:**   
 - 3a. Ineligible (no fulfilled orders) → System explains rule.  
+
 **Postconditions:** Review visible per moderation settings; stored with audit trail.  
 **Special Requirements:** Abuse/fraud controls; provider reply thread supported.  
 
 ---
 
-### 3) Provider (Farmer) Use Cases
+### 4.2 Provider (Farmer) Use Cases
 
 #### UC‑PROV‑001 — Register & Manage Provider Profile
 **Primary Actor:** Provider (Farmer)  
@@ -150,8 +164,10 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 2. Provider enters farm details; submits.  
 3. System validates and creates provider profile.  
 4. Provider may update profile fields later (hours, coverage, notes).  
+
 **Extensions:**   
 - 2a. Missing/invalid fields → System explains and requests fixes.  
+
 **Postconditions:** Provider profile exists and is linked to the user account.  
 **Special Requirements:** Separation of customer vs provider roles/permissions.  
 
@@ -167,9 +183,11 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 2. Provider completes fields and saves.  
 3. System validates (price numeric, schedule valid).  
 4. System publishes (or updates) the box to the catalog.  
+
 **Extensions:**   
 - 3a. Invalid price/schedule → System highlights field and explains.  
 - 4a. Save as draft → Not visible until published.  
+
 **Postconditions:** Box record exists/updated; catalog reflects visibility.  
 **Special Requirements:** (Optional) image uploads; change log/version notes.  
 
@@ -184,8 +202,10 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 1. System shows key metrics (active subscribers, retention, churn trend).  
 2. Provider filters by date range or box line.  
 3. System updates metrics accordingly; provider can export if supported.  
+
 **Extensions:**   
 - 1a. Insufficient data → System shows placeholders or guidance.  
+
 **Postconditions:** None (insight only).  
 **Special Requirements:** Accurate, timely data; readable charts.  
 
@@ -200,14 +220,16 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 1. System displays a reply editor.  
 2. Provider submits a reply.  
 3. System posts the reply beneath the review and (optionally) notifies the reviewer.  
+
 **Extensions:**   
 - 2a. Inappropriate content → System blocks and explains policy.  
+
 **Postconditions:** Reply visible per moderation rules; audit trail retained.  
 **Special Requirements:** Abuse filters; provider can edit/delete own reply per policy.  
 
 ---
 
-### 4) System Administrator Use Cases
+### 4.3 System Administrator Use Cases
 
 #### UC‑ADMIN‑001 — Manage User Access (Warnings/Bans)
 **Primary Actor:** System Administrator  
@@ -218,8 +240,10 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 1. System displays user account overview and history.  
 2. Admin selects action (warn/suspend/ban) and enters a reason.  
 3. System records action, updates status, and notifies the user (if applicable).  
+
 **Extensions:**  
 - 2a. User appeals → System records appeal and routes for review.  
+
 **Postconditions:** Updated user status; audit log captured.  
 **Special Requirements:** Role‑based access control (RBAC); full auditability.  
 
@@ -234,8 +258,10 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 1. System presents pending/reported listings.  
 2. Admin approves, requests changes, or removes a listing.  
 3. System applies decision and notifies the provider when needed.  
+
 **Extensions:**  
 - 2a. Repeat violations → System suggests escalated actions.  
+
 **Postconditions:** Catalog reflects moderation decisions; logs retained.  
 
 ---
@@ -249,6 +275,7 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 1. System shows flagged/pending reviews with reasons.  
 2. Admin approves, masks, removes, or requests edits.  
 3. System updates visibility and sends any required notifications.  
+
 **Postconditions:** Policy‑compliant review corpus; audit log updated.  
 
 ---
@@ -262,10 +289,10 @@ Farmers create and publish produce boxes, customers subscribe any available boxe
 1. System shows dashboards (traffic, active users, delivery success rates).  
 2. Admin filters by date, user segment, or geography.  
 3. System updates views; Admin may export reports.  
+
 **Postconditions:** None (insight only).  
 **Special Requirements:** Data quality SLAs; export to CSV/PDF.  
 
 ---
 
 ## 5 UML Class Model
-
