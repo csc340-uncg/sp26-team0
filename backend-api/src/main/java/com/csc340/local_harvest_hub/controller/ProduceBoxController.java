@@ -1,12 +1,15 @@
 package com.csc340.local_harvest_hub.controller;
 
 import com.csc340.local_harvest_hub.entity.ProduceBox;
+import com.csc340.local_harvest_hub.entity.ProduceBox.BoxStatus;
+import com.csc340.local_harvest_hub.entity.ProduceBox.Season;
 import com.csc340.local_harvest_hub.service.ProduceBoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,8 +27,15 @@ public class ProduceBoxController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProduceBox>> getAllProduceBoxes() {
-        List<ProduceBox> boxes = produceBoxService.getAllProduceBoxes();
+    public ResponseEntity<List<ProduceBox>> getAllProduceBoxes(@RequestParam(required = false) BoxStatus status,
+            @RequestParam(required = false) Season season, @RequestParam(required = false) BigDecimal maxPrice) {
+
+        List<ProduceBox> boxes;
+        if (status != null || season != null || maxPrice != null) {
+            boxes = produceBoxService.filterProduceBoxes(status, season, maxPrice);
+        } else {
+            boxes = produceBoxService.getAllProduceBoxes();
+        }
         return new ResponseEntity<>(boxes, HttpStatus.OK);
     }
 

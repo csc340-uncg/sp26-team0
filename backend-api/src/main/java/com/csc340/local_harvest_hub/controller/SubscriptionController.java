@@ -1,6 +1,7 @@
 package com.csc340.local_harvest_hub.controller;
 
 import com.csc340.local_harvest_hub.entity.Subscription;
+import com.csc340.local_harvest_hub.entity.Subscription.SubscriptionStatus;
 import com.csc340.local_harvest_hub.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,13 +50,14 @@ public class SubscriptionController {
     }
 
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<Subscription>> getSubscriptionsByStatus(@PathVariable String status) {
+    public ResponseEntity<List<Subscription>> getSubscriptionsByStatus(@PathVariable SubscriptionStatus status) {
         List<Subscription> subscriptions = subscriptionService.getSubscriptionsByStatus(status);
         return new ResponseEntity<>(subscriptions, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Subscription> updateSubscription(@PathVariable Long id, @RequestBody Subscription subscriptionDetails) {
+    public ResponseEntity<Subscription> updateSubscription(@PathVariable Long id,
+            @RequestBody Subscription subscriptionDetails) {
         try {
             Subscription updatedSubscription = subscriptionService.updateSubscription(id, subscriptionDetails);
             return new ResponseEntity<>(updatedSubscription, HttpStatus.OK);

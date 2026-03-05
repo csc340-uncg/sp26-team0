@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface FarmRepository extends JpaRepository<Farm, Long> {
-  @Query(value = "SELECT f FROM Farm f WHERE f.farmer_id = :farmerId", nativeQuery = true)
+  @Query(value = "SELECT f.* FROM farms f WHERE f.farmer_id = :farmerId", nativeQuery = true)
   Optional<Farm> findByFarmerId(Long farmerId);
 }

@@ -28,9 +28,15 @@ public class CustomerService {
 
     public Customer updateCustomer(Long id, Customer customerDetails) {
         return customerRepository.findById(id).map(customer -> {
-            customer.setEmail(customerDetails.getEmail());
-            customer.setName(customerDetails.getName());
-            customer.setStatus(customerDetails.getStatus());
+            if (customerDetails.getEmail() != null) {
+                customer.setEmail(customerDetails.getEmail());
+            }
+            if (customerDetails.getName() != null) {
+                customer.setName(customerDetails.getName());
+            }
+            if (customerDetails.getStatus() != null) {
+                customer.setStatus(customerDetails.getStatus());
+            }
             return customerRepository.save(customer);
         }).orElseThrow(() -> new RuntimeException("Customer not found"));
     }

@@ -10,8 +10,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
-
 @Entity
 @Table(name = "subscriptions")
 @Data
@@ -25,16 +23,17 @@ public class Subscription {
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
-    @JsonIgnoreProperties({"subscriptions"})
+    @JsonIgnoreProperties({ "subscriptions" })
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "box_id", nullable = false)
-    @JsonIgnoreProperties({"subscriptions"})
+    @JsonIgnoreProperties({ "subscriptions" })
     private ProduceBox produceBox;
 
     @Column(nullable = false)
-    private String cadence;
+    @Enumerated(EnumType.STRING)
+    private Cadence cadence;
 
     @Column(nullable = false)
     private LocalDate startDate;
@@ -66,11 +65,17 @@ public class Subscription {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
-}
 
-enum SubscriptionStatus {
-    ACTIVE,
-    PAUSED,
-    CANCELLED,
-    COMPLETED
+    public enum SubscriptionStatus {
+        ACTIVE,
+        PAUSED,
+        CANCELLED,
+        COMPLETED
+    }
+
+    public enum Cadence {
+        WEEKLY,
+        BIWEEKLY,
+        MONTHLY
+    }
 }

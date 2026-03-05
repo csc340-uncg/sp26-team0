@@ -34,7 +34,7 @@ public class AuditLog {
   @Column(nullable = false)
   private Long entityId;
 
-  @Column(columnDefinition = "JSONB")
+ @Column(columnDefinition = "TEXT")
   private String details;
 
   @Column(nullable = false, updatable = false)

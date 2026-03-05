@@ -45,11 +45,17 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Customer> updateCustomer(@PathVariable Long id, @RequestBody Customer customerDetails) {
+        Optional<Customer> existing = customerService.getCustomerById(id);
+        if (existing.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
         try {
             Customer updatedCustomer = customerService.updateCustomer(id, customerDetails);
             return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
         } catch (RuntimeException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            System.out.println("Error updating customer: " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // For validation errors
         }
     }
 

@@ -28,9 +28,15 @@ public class FarmerService {
 
     public Farmer updateFarmer(Long id, Farmer farmerDetails) {
         return farmerRepository.findById(id).map(farmer -> {
-            farmer.setEmail(farmerDetails.getEmail());
-            farmer.setBio(farmerDetails.getBio());
-            farmer.setStatus(farmerDetails.getStatus());
+            if (farmerDetails.getEmail() != null) {
+                farmer.setEmail(farmerDetails.getEmail());
+            }
+            if (farmerDetails.getBio() != null) {
+                farmer.setBio(farmerDetails.getBio());
+            }
+            if (farmerDetails.getStatus() != null) {
+                farmer.setStatus(farmerDetails.getStatus());
+            }
             return farmerRepository.save(farmer);
         }).orElseThrow(() -> new RuntimeException("Farmer not found"));
     }

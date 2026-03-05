@@ -29,9 +29,15 @@ public class FarmService {
 
     public Farm updateFarm(Long id, Farm farmDetails) {
         return farmRepository.findById(id).map(farm -> {
-            farm.setName(farmDetails.getName());
-            farm.setLocation(farmDetails.getLocation());
-            farm.setDescription(farmDetails.getDescription());
+            if (farmDetails.getName() != null) {
+                farm.setName(farmDetails.getName());
+            }
+            if (farmDetails.getLocation() != null) {
+                farm.setLocation(farmDetails.getLocation());
+            }
+            if (farmDetails.getDescription() != null) {
+                farm.setDescription(farmDetails.getDescription());
+            }
             return farmRepository.save(farm);
         }).orElseThrow(() -> new RuntimeException("Farm not found"));
     }

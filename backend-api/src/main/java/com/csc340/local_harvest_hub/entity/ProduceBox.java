@@ -33,7 +33,8 @@ public class ProduceBox {
   private String description;
 
   @Column(nullable = false)
-  private String season;
+  @Enumerated(EnumType.STRING)
+  private Season season;
 
   @Column(columnDefinition = "TEXT")
   private String produce;
@@ -69,7 +70,11 @@ public class ProduceBox {
     updatedAt = LocalDateTime.now();
   }
 
-  enum BoxStatus {
-    ACTIVE, INACTIVE, ARCHIVED
+  public enum BoxStatus {
+    PUBLISHED, ACTIVE, INACTIVE, ARCHIVED
+  }
+
+ public  enum Season {
+    SPRING, SUMMER, FALL, WINTER
   }
 }
