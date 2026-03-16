@@ -57,7 +57,7 @@ The API supports three primary user roles:
 **Description:** Create a new customer account with profile information.
 
 ```http
-POST /customers HTTP/1.1
+POST /customers
 Content-Type: application/json
 
 {
@@ -93,7 +93,7 @@ Content-Type: application/json
 **Description:** Retrieve all customer accounts.
 
 ```http
-GET /customers HTTP/1.1
+GET /customers
 ```
 
 **Status Code:** `200 OK`
@@ -106,7 +106,7 @@ GET /customers HTTP/1.1
 **Description:** Retrieve specific customer by ID.
 
 ```http
-GET /customers/1 HTTP/1.1
+GET /customers/1
 ```
 
 **Status Code:** `200 OK` or `404 Not Found`
@@ -132,7 +132,7 @@ GET /customers/email/jane@example.com HTTP/1.1
 **Description:** Update customer profile information.
 
 ```http
-PUT /customers/1 HTTP/1.1
+PUT /customers/1
 Content-Type: application/json
 
 {
@@ -153,7 +153,7 @@ Content-Type: application/json
 **Description:** Delete customer account.
 
 ```http
-DELETE /customers/1 HTTP/1.1
+DELETE /customers/1
 ```
 
 **Status Code:** `204 No Content` or `404 Not Found`
@@ -167,7 +167,7 @@ DELETE /customers/1 HTTP/1.1
 **Description:** Create a new farmer account.
 
 ```http
-POST /farmers HTTP/1.1
+POST /farmers
 Content-Type: application/json
 
 {
@@ -203,7 +203,7 @@ Content-Type: application/json
 **Description:** Retrieve all farmer accounts.
 
 ```http
-GET /farmers HTTP/1.1
+GET /farmers
 ```
 
 **Status Code:** `200 OK`
@@ -216,7 +216,7 @@ GET /farmers HTTP/1.1
 **Description:** Retrieve specific farmer by ID.
 
 ```http
-GET /farmers/2 HTTP/1.1
+GET /farmers/2
 ```
 
 **Status Code:** `200 OK` or `404 Not Found`
@@ -242,7 +242,7 @@ GET /farmers/email/john@example.com HTTP/1.1
 **Description:** Update farmer profile information.
 
 ```http
-PUT /farmers/2 HTTP/1.1
+PUT /farmers/2
 Content-Type: application/json
 
 {
@@ -263,7 +263,7 @@ Content-Type: application/json
 **Description:** Delete farmer account.
 
 ```http
-DELETE /farmers/2 HTTP/1.1
+DELETE /farmers/2
 ```
 
 **Status Code:** `204 No Content` or `404 Not Found`
@@ -277,7 +277,7 @@ DELETE /farmers/2 HTTP/1.1
 **Description:** Create a new farm profile.
 
 ```http
-POST /farms HTTP/1.1
+POST /farms
 Content-Type: application/json
 
 {
@@ -317,7 +317,7 @@ Content-Type: application/json
 **Description:** Retrieve all farms.
 
 ```http
-GET /farms HTTP/1.1
+GET /farms
 ```
 
 **Response:**
@@ -344,7 +344,7 @@ GET /farms HTTP/1.1
 **Description:** Retrieve specific farm profile.
 
 ```http
-GET /farms/5 HTTP/1.1
+GET /farms/5
 ```
 
 **Status Code:** `200 OK` or `404 Not Found`
@@ -357,7 +357,7 @@ GET /farms/5 HTTP/1.1
 **Description:** Update farm profile information.
 
 ```http
-PUT /farms/5 HTTP/1.1
+PUT /farms/5
 Content-Type: application/json
 
 {
@@ -378,7 +378,7 @@ Content-Type: application/json
 **Description:** Delete farm profile.
 
 ```http
-DELETE /farms/5 HTTP/1.1
+DELETE /farms/5
 ```
 
 **Status Code:** `204 No Content` or `404 Not Found`
@@ -393,7 +393,7 @@ DELETE /farms/5 HTTP/1.1
 **Description:** Create a new produce box offering.
 
 ```http
-POST /boxes HTTP/1.1
+POST /boxes
 Content-Type: application/json
 
 {
@@ -443,7 +443,7 @@ Content-Type: application/json
 **Description:** Retrieve all available produce boxes.
 
 ```http
-GET /boxes HTTP/1.1
+GET /boxes
 ```
 
 **Query Parameters:**
@@ -453,7 +453,7 @@ GET /boxes HTTP/1.1
 
 **Example with filters:**
 ```http
-GET /boxes?season=SPRING&price=40 HTTP/1.1
+GET /boxes?season=SPRING&price=40
 ```
 
 **Status Code:** `200 OK`
@@ -466,7 +466,7 @@ GET /boxes?season=SPRING&price=40 HTTP/1.1
 **Description:** Retrieve specific produce box with full details.
 
 ```http
-GET /boxes/10 HTTP/1.1
+GET /boxes/10
 ```
 
 **Response:** See Create Produce Box endpoint
@@ -481,7 +481,7 @@ GET /boxes/10 HTTP/1.1
 **Description:** Retrieve all produce boxes from a specific farm.
 
 ```http
-GET /boxes/farm/5 HTTP/1.1
+GET /boxes/farm/5
 ```
 
 **Response:** Array of produce boxes
@@ -496,7 +496,7 @@ GET /boxes/farm/5 HTTP/1.1
 **Description:** Retrieve boxes filtered by status.
 
 ```http
-GET /boxes/status/PUBLISHED HTTP/1.1
+GET /boxes/status/PUBLISHED
 ```
 
 **Response:** Array of produce boxes with matching status
@@ -511,7 +511,7 @@ GET /boxes/status/PUBLISHED HTTP/1.1
 **Description:** Update produce box information, including capacity and status.
 
 ```http
-PUT /boxes/10 HTTP/1.1
+PUT /boxes/10
 Content-Type: application/json
 
 {
@@ -547,7 +547,7 @@ DELETE /boxes/10 HTTP/1.1
 **Description:** Create a new subscription to a produce box.
 
 ```http
-POST /subscriptions HTTP/1.1
+POST /subscriptions
 Content-Type: application/json
 
 {
@@ -594,7 +594,7 @@ Content-Type: application/json
 **Description:** Retrieve all subscriptions.
 
 ```http
-GET /subscriptions HTTP/1.1
+GET /subscriptions
 ```
 
 **Status Code:** `200 OK`
@@ -607,7 +607,7 @@ GET /subscriptions HTTP/1.1
 **Description:** Retrieve specific subscription.
 
 ```http
-GET /subscriptions/101 HTTP/1.1
+GET /subscriptions/101
 ```
 
 **Status Code:** `200 OK` or `404 Not Found`
@@ -620,7 +620,7 @@ GET /subscriptions/101 HTTP/1.1
 **Description:** Retrieve all subscriptions for a specific customer.
 
 ```http
-GET /subscriptions/customer/1 HTTP/1.1
+GET /subscriptions/customer/1
 ```
 
 **Response:** Array of customer subscriptions
@@ -635,7 +635,7 @@ GET /subscriptions/customer/1 HTTP/1.1
 **Description:** Retrieve all subscriptions to a specific produce box.
 
 ```http
-GET /subscriptions/box/10 HTTP/1.1
+GET /subscriptions/box/10
 ```
 
 **Response:** Array of subscriptions to the box
@@ -650,7 +650,7 @@ GET /subscriptions/box/10 HTTP/1.1
 **Description:** Retrieve subscriptions filtered by status.
 
 ```http
-GET /subscriptions/status/ACTIVE HTTP/1.1
+GET /subscriptions/status/ACTIVE
 ```
 
 **Response:** Array of subscriptions with matching status
@@ -665,7 +665,7 @@ GET /subscriptions/status/ACTIVE HTTP/1.1
 **Description:** Update subscription cadence, status, or end date.
 
 ```http
-PUT /subscriptions/101 HTTP/1.1
+PUT /subscriptions/101
 Content-Type: application/json
 
 {
@@ -711,7 +711,7 @@ Content-Type: application/json
 **Description:** Delete a subscription (hard delete).
 
 ```http
-DELETE /subscriptions/101 HTTP/1.1
+DELETE /subscriptions/101
 ```
 
 **Status Code:** `204 No Content` or `404 Not Found`
@@ -725,7 +725,7 @@ DELETE /subscriptions/101 HTTP/1.1
 **Description:** Create a new review for a completed subscription.
 
 ```http
-POST /reviews HTTP/1.1
+POST /reviews
 Content-Type: application/json
 
 {
@@ -771,7 +771,7 @@ Content-Type: application/json
 **Description:** Retrieve all reviews in the system.
 
 ```http
-GET /reviews HTTP/1.1
+GET /reviews
 ```
 
 **Status Code:** `200 OK`
@@ -784,7 +784,7 @@ GET /reviews HTTP/1.1
 **Description:** Retrieve specific review.
 
 ```http
-GET /reviews/201 HTTP/1.1
+GET /reviews/201
 ```
 
 **Status Code:** `200 OK` or `404 Not Found`
@@ -797,7 +797,7 @@ GET /reviews/201 HTTP/1.1
 **Description:** Retrieve all reviews for a specific subscription.
 
 ```http
-GET /reviews/subscription/101 HTTP/1.1
+GET /reviews/subscription/101
 ```
 
 **Response:** Array of reviews for the subscription
@@ -812,7 +812,7 @@ GET /reviews/subscription/101 HTTP/1.1
 **Description:** Update review (farmer reply or re-scoring).
 
 ```http
-PUT /reviews/201 HTTP/1.1
+PUT /reviews/201
 Content-Type: application/json
 
 {
@@ -836,7 +836,7 @@ Content-Type: application/json
 **Description:** Delete a review (admin moderation).
 
 ```http
-DELETE /reviews/201 HTTP/1.1
+DELETE /reviews/201
 ```
 
 **Status Code:** `204 No Content` or `404 Not Found`
@@ -850,7 +850,7 @@ DELETE /reviews/201 HTTP/1.1
 **Description:** Create a new system administrator account.
 
 ```http
-POST /sysadmins HTTP/1.1
+POST /sysadmins
 Content-Type: application/json
 
 {
@@ -885,7 +885,7 @@ Content-Type: application/json
 **Description:** Retrieve all system administrators.
 
 ```http
-GET /sysadmins HTTP/1.1
+GET /sysadmins
 ```
 
 **Status Code:** `200 OK`
@@ -898,7 +898,7 @@ GET /sysadmins HTTP/1.1
 **Description:** Retrieve specific administrator.
 
 ```http
-GET /sysadmins/3 HTTP/1.1
+GET /sysadmins/3
 ```
 
 **Status Code:** `200 OK` or `404 Not Found`
@@ -924,7 +924,7 @@ GET /sysadmins/email/admin@example.com HTTP/1.1
 **Description:** Update administrator information.
 
 ```http
-PUT /sysadmins/3 HTTP/1.1
+PUT /sysadmins/3
 Content-Type: application/json
 
 {
@@ -945,7 +945,7 @@ Content-Type: application/json
 **Description:** Delete administrator account.
 
 ```http
-DELETE /sysadmins/3 HTTP/1.1
+DELETE /sysadmins/3
 ```
 
 **Status Code:** `204 No Content` or `404 Not Found`
@@ -960,7 +960,7 @@ DELETE /sysadmins/3 HTTP/1.1
 **Description:** Create an audit log entry (typically done automatically by the system).
 
 ```http
-POST /audit-logs HTTP/1.1
+POST /audit-logs
 Content-Type: application/json
 
 {
@@ -1013,7 +1013,7 @@ Content-Type: application/json
 **Description:** Retrieve all audit log entries.
 
 ```http
-GET /audit-logs HTTP/1.1
+GET /audit-logs
 ```
 
 **Status Code:** `200 OK`
@@ -1026,7 +1026,7 @@ GET /audit-logs HTTP/1.1
 **Description:** Retrieve specific audit log entry.
 
 ```http
-GET /audit-logs/301 HTTP/1.1
+GET /audit-logs/301
 ```
 
 **Status Code:** `200 OK` or `404 Not Found`
@@ -1039,7 +1039,7 @@ GET /audit-logs/301 HTTP/1.1
 **Description:** Retrieve all audit logs created by a specific administrator.
 
 ```http
-GET /audit-logs/admin/3 HTTP/1.1
+GET /audit-logs/admin/3
 ```
 
 **Response:** Array of audit logs by the admin
@@ -1054,7 +1054,7 @@ GET /audit-logs/admin/3 HTTP/1.1
 **Description:** Retrieve audit logs filtered by entity type.
 
 ```http
-GET /audit-logs/entity-type/USER HTTP/1.1
+GET /audit-logs/entity-type/USER
 ```
 
 **Response:** Array of audit logs for the entity type
@@ -1069,7 +1069,7 @@ GET /audit-logs/entity-type/USER HTTP/1.1
 **Description:** Update audit log entry.
 
 ```http
-PUT /audit-logs/301 HTTP/1.1
+PUT /audit-logs/301
 Content-Type: application/json
 
 {
@@ -1089,7 +1089,7 @@ Content-Type: application/json
 **Description:** Delete audit log entry.
 
 ```http
-DELETE /audit-logs/301 HTTP/1.1
+DELETE /audit-logs/301
 ```
 
 **Status Code:** `204 No Content` or `404 Not Found`
