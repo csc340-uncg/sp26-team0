@@ -58,20 +58,34 @@ public class ProduceBoxService {
         produceBoxRepository.deleteById(id);
     }
 
+    /**
+     * Filters ProduceBox entries based on optional criteria using JPA Specifications.
+     * Only non-null filter parameters are applied to the query.
+     *
+     * @param status The BoxStatus to filter by (e.g., AVAILABLE, SOLD_OUT). If null, status is not filtered.
+     * @param season The Season to filter by (e.g., SPRING, SUMMER). If null, season is not filtered.
+     * @param maxPrice The maximum price threshold. Products with price <= maxPrice are included. If null, price is not filtered.
+     * @return A list of ProduceBox entities matching all specified criteria. Returns all ProduceBoxes if all parameters are null.
+     */
     public List<ProduceBox> filterProduceBoxes(BoxStatus status, Season season, BigDecimal maxPrice) {
+        // Build dynamic query using JPA Specifications with multiple filter predicates
         Specification<ProduceBox> spec = (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
+            // Add status equality filter if provided
             if (status != null) {
                 predicates.add(criteriaBuilder.equal(root.get("status"), status));
             }
+            // Add season equality filter if provided
             if (season != null) {
                 predicates.add(criteriaBuilder.equal(root.get("season"), season));
             }
+            // Add price range filter (less than or equal to max) if provided
             if (maxPrice != null) {
                 predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("price"), maxPrice));
             }
 
+            // Combine all predicates with AND logic - only records matching ALL criteria are returned
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
 

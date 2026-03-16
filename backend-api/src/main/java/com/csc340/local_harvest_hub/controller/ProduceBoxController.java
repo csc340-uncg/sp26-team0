@@ -29,13 +29,7 @@ public class ProduceBoxController {
     @GetMapping
     public ResponseEntity<List<ProduceBox>> getAllProduceBoxes(@RequestParam(required = false) BoxStatus status,
             @RequestParam(required = false) Season season, @RequestParam(required = false) BigDecimal maxPrice) {
-
-        List<ProduceBox> boxes;
-        if (status != null || season != null || maxPrice != null) {
-            boxes = produceBoxService.filterProduceBoxes(status, season, maxPrice);
-        } else {
-            boxes = produceBoxService.getAllProduceBoxes();
-        }
+        List<ProduceBox> boxes = produceBoxService.filterProduceBoxes(status, season, maxPrice);
         return new ResponseEntity<>(boxes, HttpStatus.OK);
     }
 
