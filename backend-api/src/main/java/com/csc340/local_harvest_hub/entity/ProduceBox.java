@@ -56,7 +56,7 @@ public class ProduceBox {
   private LocalDateTime updatedAt;
 
   @OneToMany(mappedBy = "produceBox", cascade = CascadeType.ALL, orphanRemoval = true)
-  @JsonIgnoreProperties({ "produceBox", "customer.subscriptions" })
+  @JsonIgnoreProperties({ "produceBox" })
   private List<Subscription> subscriptions;
 
   @PrePersist
@@ -74,7 +74,7 @@ public class ProduceBox {
     PUBLISHED, ACTIVE, INACTIVE, ARCHIVED
   }
 
- public  enum Season {
+  public enum Season {
     SPRING, SUMMER, FALL, WINTER
   }
 }
