@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/farmers")
@@ -31,9 +30,12 @@ public class FarmerController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Farmer> getFarmerById(@PathVariable Long id) {
-        Optional<Farmer> farmer = farmerService.getFarmerById(id);
-        return farmer.map(f -> new ResponseEntity<>(f, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        Farmer farmer = farmerService.getFarmerById(id);
+        if (farmer != null) {
+            return new ResponseEntity<>(farmer, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/email/{email}")

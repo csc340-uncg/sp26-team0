@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FarmerService {
@@ -18,8 +17,8 @@ public class FarmerService {
         return farmerRepository.save(farmer);
     }
 
-    public Optional<Farmer> getFarmerById(Long id) {
-        return farmerRepository.findById(id);
+    public Farmer getFarmerById(Long id) {
+        return farmerRepository.findById(id).orElse(null);
     }
 
     public List<Farmer> getAllFarmers() {
@@ -57,4 +56,5 @@ public class FarmerService {
             throw new RuntimeException("Invalid email or password");
         }
     }
+
 }

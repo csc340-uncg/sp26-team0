@@ -11,43 +11,18 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
     <div class="container">
-      <a class="navbar-brand" href="/">
-        <img src="/images/localharvest-logo.png" alt="LocalHarvest Hub" height="30"
-          class="d-inline-block align-text-top me-2">
-        LocalHarvest Hub
-      </a>
+      <a class="navbar-brand" href="/">LocalHarvest Hub</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
           </li>
-          <#if customerId?? || farmerId??>
-            <#if customerId??>
-              <li class="nav-item">
-                <a class="nav-link" href="/customer/dashboard">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/customer/logout">Logout</a>
-              </li>
-              <#else>
-                <li class="nav-item">
-                  <a class="nav-link" href="/farmer/dashboard">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/farmer/logout">Logout</a>
-                </li>
-            </#if>
-            <#else>
-              <li class="nav-item">
-                <a class="nav-link" href="/signin">Sign In</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/signup">Sign Up</a>
-              </li>
-          </#if>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Sign Up</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -100,7 +75,7 @@
                   <button type="submit" class="btn btn-primary">Sign In</button>
                 </form>
                 <div class="mt-3">
-                  <a href="/farmer/signup">Need an account? Sign up as a farmer</a>
+                  <a href="/signup">Need an account? Sign up today!</a>
                 </div>
               </div>
             </div>

@@ -12,33 +12,29 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
     <div class="container">
-      <a class="navbar-brand" href="/">
-        <img src="/images/localharvest-logo.png" alt="LocalHarvest Hub" height="30"
-          class="d-inline-block align-text-top me-2">
-        LocalHarvest Hub
-      </a>
+      <a class="navbar-brand" href="/">LocalHarvest Hub</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="nav-link" href="/">Home</a>
           </li>
           <#if customerId?? || farmerId??>
             <#if customerId??>
               <li class="nav-item">
-                <a class="nav-link" href="/customers/dashboard">Dashboard</a>
+                <a class="nav-link" href="/customer/dashboard">Dashboard</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/customers/logout">Logout</a>
+                <a class="nav-link" href="/customer/logout">Logout</a>
               </li>
               <#else>
                 <li class="nav-item">
-                  <a class="nav-link" href="/farmers/dashboard">Dashboard</a>
+                  <a class="nav-link" href="/farmer/dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/farmers/logout">Logout</a>
+                  <a class="nav-link" href="/farmer/logout">Logout</a>
                 </li>
             </#if>
             <#else>
@@ -58,15 +54,35 @@
     <div class="px-4 py-5 my-5">
       <div class="row align-items-center">
         <div class="col-lg-6 text-center text-lg-start">
-          <h1 class="display-5 fw-bold text-body-emphasis mb-4">Welcome to LocalHarvest Hub</h1>
-          <p class="lead mb-4">
-            Connecting local farmers with customers who appreciate fresh, locally grown produce.
-            Experience the difference of farm-fresh vegetables delivered directly to your door.
-          </p>
-          <div class="d-grid gap-2 d-sm-flex justify-content-lg-start justify-content-center">
-            <a href="/signup" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
-            <a href="/signin" class="btn btn-outline-secondary btn-lg px-4">Sign In</a>
-          </div>
+          <#if customerId??>
+            <h1 class="display-5 fw-bold text-body-emphasis mb-4">Welcome Back, Customer!</h1>
+            <p class="lead mb-4">
+              Browse our latest seasonal produce boxes from local farms and manage your subscriptions.
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-lg-start justify-content-center">
+              <a href="/customer/products" class="btn btn-primary btn-lg px-4 gap-3">Browse Products</a>
+              <a href="/customer/subscriptions" class="btn btn-outline-secondary btn-lg px-4">My Subscriptions</a>
+            </div>
+          <#elseif farmerId??>
+            <h1 class="display-5 fw-bold text-body-emphasis mb-4">Welcome Back, Farmer!</h1>
+            <p class="lead mb-4">
+              Manage your farm, products, and customer reviews. Track your farm's performance and engage with customers.
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-lg-start justify-content-center">
+              <a href="/farmer/dashboard" class="btn btn-primary btn-lg px-4 gap-3">Go to Dashboard</a>
+              <a href="/farmer/products" class="btn btn-outline-secondary btn-lg px-4">Manage Products</a>
+            </div>
+          <#else>
+            <h1 class="display-5 fw-bold text-body-emphasis mb-4">Welcome to LocalHarvest Hub</h1>
+            <p class="lead mb-4">
+              Connecting local farmers with customers who appreciate fresh, locally grown produce.
+              Experience the difference of farm-fresh vegetables delivered directly to your door.
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-lg-start justify-content-center">
+              <a href="/signup" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+              <a href="/signin" class="btn btn-outline-secondary btn-lg px-4">Sign In</a>
+            </div>
+          </#if>
         </div>
         <div class="col-lg-6 mt-5 mt-lg-0">
           <div class="position-relative">
@@ -139,15 +155,17 @@
 
     <div class="text-center py-5 mb-5" style="background-color: #f8f9fa; border-radius: 1rem;">
       <div class="col-lg-8 mx-auto">
-        <h2 class="display-6 mb-3">Ready to Experience Farm-Fresh Produce?</h2>
-        <p class="lead mb-4">
-          Join LocalHarvest Hub to explore all our farms and produce boxes.
-          Support local agriculture while enjoying the freshest seasonal produce.
-        </p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-          <a href="/signup" class="btn btn-success btn-lg px-5 gap-3">Sign Up Now</a>
-          <a href="/signin" class="btn btn-outline-success btn-lg px-5">Sign In</a>
-        </div>
+        <#if !customerId?? && !farmerId??>
+          <h2 class="display-6 mb-3">Ready to Experience Farm-Fresh Produce?</h2>
+          <p class="lead mb-4">
+            Join LocalHarvest Hub to explore all our farms and produce boxes.
+            Support local agriculture while enjoying the freshest seasonal produce.
+          </p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="/signup" class="btn btn-success btn-lg px-5 gap-3">Sign Up Now</a>
+            <a href="/signin" class="btn btn-outline-success btn-lg px-5">Sign In</a>
+          </div>
+        </#if>
       </div>
     </div>
   </div>
