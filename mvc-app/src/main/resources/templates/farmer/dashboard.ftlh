@@ -23,34 +23,62 @@
         <a href="#" class="btn btn-primary">Go to Profile Settings</a>
       </div>
     </div>
+
     <div class="card mb-3">
       <div class="card-body">
         <h5 class="card-title"> Farm Details <span style="font-style: italic; float: right;"> View and edit your farm
             information.</span></h5>
-        <p> Farm: ${currentFarmer.farm.name}</p>
-        <p> Location: ${currentFarmer.farm.location}</p>
-        <p>Desc: ${currentFarmer.farm.description} </p>
-        <a href="#" class="btn btn-primary">Go to Farm Settings</a>
+        <#if currentFarmer.farm??>
+          <p> Farm: ${currentFarmer.farm.name}</p>
+          <p> Location: ${currentFarmer.farm.location}</p>
+          <p>Desc: ${currentFarmer.farm.description} </p>
+          <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Total Boxes: <span
+                  class="badge text-bg-primary rounded-pill">${totalBoxes}</span></li>
+              <li class="list-group-item">Total Subscriptions: <span
+                  class="badge text-bg-primary rounded-pill">${totalSubscriptions}</span></li>
+              <li class="list-group-item">Average Rating: <span
+                  class="badge text-bg-primary rounded-pill">${averageRating}</span></li>
+            </ul>
+          </div>
+
+          <a href="#" class="btn btn-primary">Go to Farm Settings</a>
+
+
+          <#else>
+            <div class="alert alert-info">
+              Please set up your farm details to start selling produce.
+              <a href="/farmer/farm/setup" class="btn btn-primary btn-sm mt-2">Set Up Farm</a>
+            </div>
+        </#if>
       </div>
     </div>
 
     <div class="card mb-3">
       <div class="card-body">
-        <h5 class="card-title">Manage Latest Boxes <span style="font-style: italic; float: right;">Add, edit, or remove your
+        <h5 class="card-title">Manage Latest Boxes <span style="font-style: italic; float: right;">Add, edit, or remove
+            your
             products from the marketplace. </span></h5>
-        <div class="list-group">
-          <#list currentFarmer.farm.produceBoxes as box>
-            <div class="list-group-item">
-              <p class="card-text">Box: ${box.title} - $${box.price}</p>
-              <p class="card-text">Description: ${box.description}</p>
-              <p class="card-text">Season: ${box.season}</p>
-              <a href="#" class="btn btn-secondary mb-2">Edit Box</a>
-              <a href="#" class="btn btn-danger mb-2">Delete Box</a>
-            </div>
-          </#list>
-        </div>
-        <a href="#" class="btn btn-primary">Go to Product Management</a>
+        <#if currentFarmer.farm??>
+          <div class="list-group">
+            <#list currentFarmer.farm.produceBoxes as box>
+              <div class="list-group-item">
+                <p class="card-text">Box: ${box.title} - $${box.price}</p>
+                <p class="card-text">Description: ${box.description}</p>
+                <p class="card-text">Season: ${box.season}</p>
+                <a href="#" class="btn btn-secondary mb-2">Edit Box</a>
+                <a href="#" class="btn btn-danger mb-2">Delete Box</a>
+              </div>
+            </#list>
+            <#else>
+              <div class="alert alert-info">
+                Please set up your farm details to start selling produce.
+                <a href="/farmer/farm/setup" class="btn btn-primary btn-sm mt-2">Set Up Farm</a>
+              </div>
+        </#if>
       </div>
+      <a href="#" class="btn btn-primary">Go to Product Management</a>
     </div>
   </div>
 

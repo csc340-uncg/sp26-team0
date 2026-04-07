@@ -48,4 +48,13 @@ public class FarmerService {
     public Farmer getFarmerByEmail(String email) {
         return farmerRepository.findByEmail(email);
     }
+
+    public Farmer authenticate(String email, String password) {
+        Farmer farmer = getFarmerByEmail(email);
+        if (farmer != null && farmer.getPasswordHash().equals(password)) {
+            return farmer;
+        } else {
+            throw new RuntimeException("Invalid email or password");
+        }
+    }
 }

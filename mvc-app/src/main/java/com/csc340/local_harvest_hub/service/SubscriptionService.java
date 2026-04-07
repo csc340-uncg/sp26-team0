@@ -51,4 +51,8 @@ public class SubscriptionService {
     public void deleteSubscription(Long id) {
         subscriptionRepository.deleteById(id);
     }
+
+    public List<Subscription> getSubscriptionsByFarmId(Long farmId) {
+      return subscriptionRepository.findByFarmId(farmId);
+    }
 }
